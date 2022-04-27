@@ -26,46 +26,48 @@ def is_different(lhs, rhs):
 
 
 def solve():
-    i_min, i_max = 10, 20
+    i_min, i_max = 10000, 99999
     length = i_max - i_min
     numbers = [i for i in range(i_min, i_max + 1, 1)]
 
     # if VERBOSE:
     print("numbers = {}".format(numbers))
 
-    n = 0
-    for i in range(2, length + 1, 1):
-        for subset in combinations(numbers, i):
-            print("subset = {}".format(subset))
+    res = 0
+    for i in range(length, 1, -1):
+        subsets = list(combinations(numbers, i))
+        for subset in subsets:
+            print("len of subset = {}".format(i))
             is_ok = True
-            for pair in combinations(subset, 2):
+            pairs = list(combinations(subset, 2))
+            for pair in pairs:
                 if not is_different(pair[0], pair[1]):
                     is_ok = False
                     break
             if is_ok:
-                n += 1
+                print("i_max = {}".format(i))
+                res = i
+                break
 
-    return n
+    return res
 
 
-def analytic_solve():
-    i_min, i_max = 10, 20
-    n = i_max - i_min
-    prob = (8 / 9)**2
+def solve_analytically():
+    return 9 * 10 * 10 * 9 * 9
 
-    res = 0
-    for k in range(2, n + 1, 1):
-        res += math.factorial(n) / (math.factorial(n - k) * math.factorial(k - 2))
-
-    return prob * res
 
 if __name__ == '__main__':
 
     start = time.time()
-    solution_1 = solve()
-    solution_2 = analytic_solve()
+    # solution = solve()
+    solution = solve_analytically()
     end = time.time()
 
-    print("\nn = {}".format(solution_1))
-    print("\nn_analytic = {}".format(solution_2))
+    print("\nn = {}".format(solution))
     print("TIME = {:.1f} s".format(end - start))
+
+#
+# Answer
+#
+# 72900
+#
