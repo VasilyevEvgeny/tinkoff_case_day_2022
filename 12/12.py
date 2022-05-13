@@ -8,7 +8,8 @@ variants = {'depression': {'prob': 0.8, 'cleaning': 20, 'time': 80},
 
 
 times = []
-n = 100000000
+n = 1000000
+print('\n')
 for i in tqdm(range(n)):
     cleaning = 100
     time = 0

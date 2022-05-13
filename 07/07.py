@@ -20,13 +20,13 @@ def solve():
 
 
 def brute_force():
-    ps = linspace(2, 1000, 1)
-    qs = linspace(2, 1000, 1)
-    eps = 0.1
+    ps = linspace(2, 1000, 999)
+    qs = linspace(2, 1000, 999)
+    eps = 0.000001
     for p in ps:
         for q in qs:
             fraction = p / q
-            if abs(fraction - 1.05) < eps:
+            if abs(fraction - 1.0534984801663334) < eps:
                 print('p = {}, q = {}, p / q = {}'.format(p, q, fraction))
 
 
