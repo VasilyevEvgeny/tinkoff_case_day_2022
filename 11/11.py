@@ -2,9 +2,21 @@ from itertools import permutations
 from numpy import zeros, full
 
 
-VERBOSE = True
+VERBOSE = False
 
 answers = []
+
+results = {}
+
+
+def check_results(last_row, cur_res):
+    last_row = list(last_row)
+    last_row.remove('#')
+    s = 0
+    for e in last_row:
+        s += int(e)
+    if s not in results.keys():
+        results.update({s: cur_res})
 
 
 def set_result(arr, i, j, points):
@@ -188,6 +200,7 @@ def process(results, variants, i_row):
             answers.append(results_for_var[-1, :])
             print('FINAL:\nlast_row:\n', results_for_var[-1, :])
             print('all results:\n', results_for_var)
+            check_results(results_for_var[-1, :], results_for_var)
 
 
 def solve():
@@ -230,6 +243,8 @@ def solve():
 
 if __name__ == '__main__':
     solve()
+
+    print(results)
 
 #
 # Answer

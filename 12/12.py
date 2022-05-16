@@ -7,16 +7,16 @@ variants = {'depression': {'prob': 0.8, 'cleaning': 20, 'time': 80},
             'maniac': {'prob': 0.2, 'cleaning': 80, 'time': 20}}
 
 
-times = []
+mean_time = 0.0
 n = 1000000
 print('\n')
-for i in tqdm(range(n)):
+for _ in tqdm(range(n)):
     cleaning = 100
     time = 0
     step = 0
     while cleaning > 0:
         if VERBOSE:
-            print('i = ', step)
+            print('step = ', step)
         choice = random.choice(['depression', 'maniac'], p=[variants['depression']['prob'], variants['maniac']['prob']])
         if VERBOSE:
             print('...choice = ', choice)
@@ -25,14 +25,13 @@ for i in tqdm(range(n)):
         if VERBOSE:
             print('...cleaning ->', cleaning)
             print('...time ->', time)
-        i += 1
 
     if VERBOSE:
         print('time =', time)
 
-    times.append(time / 100)
+    mean_time += time / 100
 
-print('MEAN TIME:', sum(times) / n, '[hours]')
+print('MEAN TIME:', mean_time / n, '[hours]')
 
 
 # n = 1e6
